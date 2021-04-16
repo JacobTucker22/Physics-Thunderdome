@@ -5,24 +5,45 @@ using UnityEngine;
 public class Enemy : Entity
 {
      public Entity targetEnt;
-     public float timer = 5.0f;
+     public float timer = -1.0f;
+     public float relativeSpeed;
+     public float distance;
+     public float timeToHit;
+
+     public Vector3 predictedPos;
+     Vector3 eulerAngles;
+     
 
      private void Start()
      {
           rb = GetComponent<Rigidbody>();
+          rb.AddForce(Vector3.forward);
      }
 
      private void FixedUpdate()
      {
-          if (timer < 0)
+          if (timer <= 0)
           {
                FindTarget();
                timer = 5.0f;
           }
 
-          direction = (targetEnt.rb.position - rb.position);
+          
+          rb.AddForce(rb.transform.forward * thrust);
+          
 
-          rb.AddForce(direction * thrust);
+          //calculate time to hit
+          relativeSpeed = (targetEnt.rb.velocity - rb.velocity).magnitude;
+          distance = (targetEnt.rb.position - rb.position).magnitude;
+          timeToHit = distance / relativeSpeed;
+          
+          predictedPos = targetEnt.rb.position + (targetEnt.rb.velocity * timeToHit);
+
+          //direction = predictedPos - rb.position;
+          direction = predictedPos - rb.position;
+
+          rb.transform.forward = direction;
+
 
           timer -= Time.deltaTime;
      }

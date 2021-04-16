@@ -5,5 +5,8 @@ using UnityEngine;
 public class Player : Entity
 {
 
-
+     private void Start()
+     {
+          rb = GetComponent<Rigidbody>();
+     }
 }
