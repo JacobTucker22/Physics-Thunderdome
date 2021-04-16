@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86602863}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 38.12, z: -214.29}
+  m_LocalPosition: {x: 0.07, y: 38.12, z: 163.2}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 647657267}
@@ -219,7 +219,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &86602869
 MonoBehaviour:
@@ -234,12 +234,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  thrust: 5
+  thrust: 50
   maxSpeed: 20
   minSpeed: -5
+  currentSpeed: 0
+  position: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   targetEnt: {fileID: 0}
   timer: -1
+  relativeSpeed: 0
+  distance: 0
+  timeToHit: 0
+  predictedPos: {x: 0, y: 0, z: 0}
 --- !u!1 &117275116
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +277,7 @@ Transform:
   - {fileID: 1008520201}
   - {fileID: 725507028}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &170076733
 GameObject:
@@ -339,7 +346,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &521839878
 GameObject:
@@ -508,13 +515,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.26629105, y: -0, z: -0, w: 0.96389264}
-  m_LocalPosition: {x: 0.110000014, y: 35, z: -251.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: -3.5}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1591877398}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30.887001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &647657266
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,9 +992,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591877394}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.24923, y: -20.882301, z: -21.850174}
+  m_LocalPosition: {x: 36.24923, y: -20.882301, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
-  m_Children: []
+  m_Children:
+  - {fileID: 534669905}
   m_Father: {fileID: 1888887980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1005,7 +1013,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1591877400
 MonoBehaviour:
@@ -1020,10 +1028,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  thrust: 5
+  thrust: 100
   maxSpeed: 20
   minSpeed: -5
+  currentSpeed: 0
+  position: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
+  eulerAngles: {x: 0, y: 0, z: 0}
 --- !u!1 &1626275095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,7 +1070,7 @@ Transform:
   - {fileID: 1187367868}
   - {fileID: 521839879}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1644540143
 GameObject:
@@ -1274,5 +1286,5 @@ Transform:
   - {fileID: 647657267}
   - {fileID: 1591877398}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

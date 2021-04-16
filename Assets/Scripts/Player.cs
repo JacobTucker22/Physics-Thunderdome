@@ -14,14 +14,45 @@ public class Player : Entity
 
      private void Update()
      {
-          if(Input.GetKeyDown(KeyCode.Escape))
+
+          moveCamera();
+          HandleInput();
+
+
+          if (Input.GetKeyDown(KeyCode.Escape))
           {
                QuitGame();
           }
 
-          moveCamera();
 
 
+
+     }
+
+     public void HandleInput()
+     {
+          if(Input.GetKey(KeyCode.W)) 
+          {
+               rb.velocity = rb.velocity + rb.transform.forward;
+               //rb.AddForce(rb.transform.forward * thrust);
+          }
+          if (Input.GetKey(KeyCode.S))
+          {
+               rb.velocity = rb.velocity - rb.transform.forward;
+               //rb.AddForce(-rb.transform.forward * thrust);
+          }
+          if (Input.GetKey(KeyCode.D))
+          {
+               rb.velocity = rb.velocity + rb.transform.right;
+          }
+          if (Input.GetKey(KeyCode.A))
+          {
+               rb.velocity = rb.velocity - rb.transform.right;
+          }
+          if(Input.GetKey(KeyCode.Space))
+          {
+               rb.velocity = Vector3.zero;
+          }
      }
 
      public void moveCamera()
