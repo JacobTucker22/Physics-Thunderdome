@@ -18,6 +18,7 @@ public class Enemy : Entity
      {
           rb = GetComponent<Rigidbody>();
           rb.AddForce(Vector3.forward);
+          position = rb.position;
      }
 
      private void FixedUpdate()
@@ -26,9 +27,10 @@ public class Enemy : Entity
           {
                FindTarget();
                timer = 5.0f;
+               rb.velocity = Vector3.zero;
           }
 
-          
+
           rb.AddForce(rb.transform.forward * thrust);
           
 
