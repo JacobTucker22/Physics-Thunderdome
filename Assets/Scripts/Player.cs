@@ -11,6 +11,11 @@ public class Player : Entity
           rb = GetComponent<Rigidbody>();
           //mouse cursor hidden. Use ESCAPE to quit
           Cursor.visible = false;
+
+        collisionSound = GetComponent<AudioSource>();
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
      }
 
      private void Update()
@@ -48,7 +53,7 @@ public class Player : Entity
           {
                rb.velocity = rb.velocity - rb.transform.right;
           }
-          if(Input.GetKey(KeyCode.Space))
+          if(Input.GetKey(KeyCode.Space))  
           {
                rb.velocity = Vector3.zero;
           }
@@ -81,4 +86,20 @@ public class Player : Entity
          Application.Quit();
 #endif
      }
+
+    //audio
+    public AudioSource collisionSound;
+    private void OnCollisionEnter(Collision collision)
+    {
+        collisionSound.Play();
+    }
+    //health
+    public int maxHealth = 100;
+    public int currentHealth;
+    public UIMgr healthBar;
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
 }
