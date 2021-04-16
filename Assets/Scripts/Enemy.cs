@@ -26,12 +26,12 @@ public class Enemy : Entity
           if (timer <= 0)
           {
                FindTarget();
-               timer = 5.0f;
+               timer = 20.0f;
                rb.velocity = Vector3.zero;
           }
 
-
-          rb.AddForce(rb.transform.forward * thrust);
+          rb.velocity = rb.velocity + rb.transform.forward;
+          //rb.AddForce(rb.transform.forward * thrust);
           
 
           //calculate time to hit
