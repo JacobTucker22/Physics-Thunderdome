@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : Entity
 {
+     //euler angles used to transforom orientation with mouse
      public Vector3 eulerAngles = Vector3.zero;
      private void Start()
      {
@@ -14,21 +15,19 @@ public class Player : Entity
 
      private void Update()
      {
-
+          //Moves the player orientation with mouse movement
+          //Which then moves the camera
           moveCamera();
+          //Basic keyboard controls
           HandleInput();
-
-
-          if (Input.GetKeyDown(KeyCode.Escape))
-          {
-               QuitGame();
-          }
-
-
 
 
      }
 
+     //WASD adds velocity to local axes
+     //Seems to work better than add force
+     //Space stops the player for testing purposes 
+     //FIXME change stop to something else. Space and Click to be used for ram
      public void HandleInput()
      {
           if(Input.GetKey(KeyCode.W)) 
@@ -53,8 +52,13 @@ public class Player : Entity
           {
                rb.velocity = Vector3.zero;
           }
+          if (Input.GetKeyDown(KeyCode.Escape))
+          {
+               QuitGame();
+          }
      }
 
+     //transforms rigidbody component based on mouse movement
      public void moveCamera()
      {
           float x = 5 * Input.GetAxis("Mouse X");
@@ -65,6 +69,7 @@ public class Player : Entity
           rb.transform.localEulerAngles = eulerAngles;
      }
 
+     //ESC will close program or stop play in editor
      public void QuitGame()
      {
           // save any game data here

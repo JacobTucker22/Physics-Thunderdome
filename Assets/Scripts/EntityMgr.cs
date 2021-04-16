@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Singleton just holds list of all entities
+//Used in enemy AI
 public class EntityMgr : MonoBehaviour
 {
      public static EntityMgr inst;
