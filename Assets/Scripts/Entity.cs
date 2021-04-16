@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-
-     public float speed;
-     public float accel;
-     public Vector3 position;
-     public Vector3 velocity;
-
+     public Rigidbody rb;
+     public float thrust = 5.0f;
+     public float maxSpeed = 20;
+     public float minSpeed = -5;
+     public Vector3 direction = Vector3.zero;
 
 }
