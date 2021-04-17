@@ -37,21 +37,21 @@ public class Player : Entity
      {
           if(Input.GetKey(KeyCode.W)) 
           {
-               rb.velocity = rb.velocity + rb.transform.forward;
+               rb.velocity = rb.velocity + rb.transform.forward * thrust;
                //rb.AddForce(rb.transform.forward * thrust);
           }
           if (Input.GetKey(KeyCode.S))
           {
-               rb.velocity = rb.velocity - rb.transform.forward;
+               rb.velocity = rb.velocity - rb.transform.forward * thrust;
                //rb.AddForce(-rb.transform.forward * thrust);
           }
           if (Input.GetKey(KeyCode.D))
           {
-               rb.velocity = rb.velocity + rb.transform.right;
+               rb.velocity = rb.velocity + rb.transform.right * thrust;
           }
           if (Input.GetKey(KeyCode.A))
           {
-               rb.velocity = rb.velocity - rb.transform.right;
+               rb.velocity = rb.velocity - rb.transform.right * thrust;
           }
           if(Input.GetKey(KeyCode.Space))  
           {

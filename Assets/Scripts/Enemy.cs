@@ -39,7 +39,7 @@ public class Enemy : Entity
 
           //AI always trying to move forward for now
           //FIXME maybe add decrease to velocity when trying to turn towards target?
-          rb.velocity = rb.velocity + rb.transform.forward;
+          rb.velocity = rb.velocity + rb.transform.forward * thrust;
           //rb.AddForce(rb.transform.forward * thrust);
 
           //calculate time to hit
