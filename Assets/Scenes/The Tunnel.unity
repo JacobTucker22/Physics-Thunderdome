@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 86602868}
   m_Layer: 0
   m_Name: Enemy 0
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86602863}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 52.4, z: 198.9}
+  m_LocalPosition: {x: -326, y: 52.4, z: 198.9}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 647657267}
@@ -234,10 +234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  thrust: 5
-  maxSpeed: 20
-  minSpeed: -5
+  thrust: 500
+  maxSpeed: 500
+  minSpeed: -250
   currentSpeed: 0
+  isBouncing: 0
+  bounceTimer: 1
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
@@ -1014,7 +1016,7 @@ GameObject:
   - component: {fileID: 945638427}
   m_Layer: 0
   m_Name: Enemy 2
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1027,7 +1029,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945638425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 89.2, y: 58.7, z: -15.1}
+  m_LocalPosition: {x: 89.2, y: 58.7, z: 966}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 647657267}
@@ -1075,10 +1077,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  thrust: 5
-  maxSpeed: 20
-  minSpeed: -5
+  thrust: 500
+  maxSpeed: 500
+  minSpeed: -250
   currentSpeed: 0
+  isBouncing: 0
+  bounceTimer: 1
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
@@ -1193,7 +1197,7 @@ GameObject:
   - component: {fileID: 1163827928}
   m_Layer: 0
   m_Name: Enemy 1
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1206,7 +1210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163827926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 49.7, z: -175.5}
+  m_LocalPosition: {x: -209, y: 49.7, z: 748}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 647657267}
@@ -1254,10 +1258,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  thrust: 5
-  maxSpeed: 20
-  minSpeed: -5
+  thrust: 500
+  maxSpeed: 500
+  minSpeed: -250
   currentSpeed: 0
+  isBouncing: 0
+  bounceTimer: 1
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
@@ -1405,7 +1411,7 @@ GameObject:
   - component: {fileID: 1372212796}
   m_Layer: 0
   m_Name: Enemy 4
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1418,7 +1424,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372212794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 25.7, z: 163.2}
+  m_LocalPosition: {x: 570, y: 25.7, z: 795}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 647657267}
@@ -1466,10 +1472,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  thrust: 5
-  maxSpeed: 20
-  minSpeed: -5
+  thrust: 500
+  maxSpeed: 500
+  minSpeed: -250
   currentSpeed: 0
+  isBouncing: 0
+  bounceTimer: 1
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
@@ -1618,7 +1626,7 @@ GameObject:
   - component: {fileID: 1591877401}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1725,10 +1733,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  thrust: 5
-  maxSpeed: 20
-  minSpeed: -5
+  thrust: 500
+  maxSpeed: 500
+  minSpeed: -250
   currentSpeed: 0
+  isBouncing: 0
+  bounceTimer: 1
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
@@ -1736,7 +1746,7 @@ MonoBehaviour:
   collisionSound: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1008520202}
 --- !u!82 &1591877401
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1882,7 +1892,7 @@ GameObject:
   - component: {fileID: 1996815371}
   m_Layer: 0
   m_Name: Enemy 3
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1895,7 +1905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996815369}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -72.7, y: 55, z: 31.9}
+  m_LocalPosition: {x: -72.7, y: 55, z: 1370}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 647657267}
@@ -1943,10 +1953,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  thrust: 5
-  maxSpeed: 20
-  minSpeed: -5
+  thrust: 500
+  maxSpeed: 500
+  minSpeed: -250
   currentSpeed: 0
+  isBouncing: 0
+  bounceTimer: 1
   position: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}

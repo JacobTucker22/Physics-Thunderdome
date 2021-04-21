@@ -6,16 +6,17 @@ public class Player : Entity
 {
      //euler angles used to transforom orientation with mouse
      public Vector3 eulerAngles = Vector3.zero;
+
      private void Start()
      {
           rb = GetComponent<Rigidbody>();
           //mouse cursor hidden. Use ESCAPE to quit
           Cursor.visible = false;
 
-        collisionSound = GetComponent<AudioSource>();
+          collisionSound = GetComponent<AudioSource>();
 
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+          currentHealth = maxHealth;
+          healthBar.SetMaxHealth(maxHealth);
      }
 
      private void Update()
@@ -27,31 +28,35 @@ public class Player : Entity
           HandleInput();
 
 
+
      }
 
-     //WASD adds velocity to local axes
-     //Seems to work better than add force
+     //WS add/subtract from current speed
      //Space stops the player for testing purposes 
      //FIXME change stop to something else. Space and Click to be used for ram
      public void HandleInput()
      {
           if(Input.GetKey(KeyCode.W)) 
           {
-               rb.velocity = rb.velocity + rb.transform.forward * thrust;
-               //rb.AddForce(rb.transform.forward * thrust);
+               if (currentSpeed <= maxSpeed)
+               {
+                    currentSpeed = currentSpeed + thrust * Time.deltaTime;
+               }
           }
           if (Input.GetKey(KeyCode.S))
           {
-               rb.velocity = rb.velocity - rb.transform.forward * thrust;
-               //rb.AddForce(-rb.transform.forward * thrust);
+               if (currentSpeed >= minSpeed)
+               {
+                    currentSpeed = currentSpeed - thrust * Time.deltaTime;
+               }
           }
           if (Input.GetKey(KeyCode.D))
           {
-               rb.velocity = rb.velocity + rb.transform.right * thrust;
+               rb.MovePosition(rb.position + rb.transform.right * 3);              
           }
           if (Input.GetKey(KeyCode.A))
           {
-               rb.velocity = rb.velocity - rb.transform.right * thrust;
+               rb.MovePosition(rb.position - rb.transform.right * 3);
           }
           if(Input.GetKey(KeyCode.Space))  
           {
@@ -66,12 +71,30 @@ public class Player : Entity
      //transforms rigidbody component based on mouse movement
      public void moveCamera()
      {
+
           float x = 5 * Input.GetAxis("Mouse X");
           float y = 5 * -Input.GetAxis("Mouse Y");
           rb.transform.Rotate(y, x, 0);
           eulerAngles = rb.transform.localEulerAngles;
           eulerAngles.z = 0;
           rb.transform.localEulerAngles = eulerAngles;
+
+          //keeps velocity moving in forward direction
+          if (!isBouncing)
+          {
+               rb.velocity = rb.transform.forward * currentSpeed;
+          }
+          else
+          {
+               rb.AddForce(rb.transform.forward);
+               currentSpeed = rb.velocity.magnitude;
+               bounceTimer -= Time.deltaTime;
+               if (bounceTimer < 0)
+               {
+                    isBouncing = false;
+               }
+          }
+          
      }
 
      //ESC will close program or stop play in editor
@@ -91,10 +114,21 @@ public class Player : Entity
     public AudioSource collisionSound;
     private void OnCollisionEnter(Collision collision)
     {
-        collisionSound.Play();
-    }
-    //health
-    public int maxHealth = 100;
+         collisionSound.Play();
+
+          isBouncing = true;
+          bounceTimer = 0.5f;
+
+          if (collision.gameObject.CompareTag("Entity"))
+          {
+               Rigidbody otherRB = collision.gameObject.GetComponent<Rigidbody>();
+               rb.AddForce((collision.GetContact(0).normal * Vector3.Dot(otherRB.velocity, collision.GetContact(0).normal)) * 10, ForceMode.Impulse);
+          }
+     }
+
+
+//health
+public int maxHealth = 100;
     public int currentHealth;
     public UIMgr healthBar;
     public void TakeDamage(int damage)

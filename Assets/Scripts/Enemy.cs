@@ -34,14 +34,30 @@ public class Enemy : Entity
           {
                FindTarget();
                timer = 20.0f;
-               rb.velocity = Vector3.zero;
+               //rb.velocity = Vector3.zero;
           }
 
           //AI always trying to move forward for now
           //FIXME maybe add decrease to velocity when trying to turn towards target?
-          rb.velocity = rb.velocity + rb.transform.forward * thrust;
-          //rb.AddForce(rb.transform.forward * thrust);
+          if (currentSpeed <= maxSpeed)
+          {
+               currentSpeed = currentSpeed + thrust * Time.deltaTime;
+          }
 
+          if (!isBouncing)
+          {
+               rb.velocity = rb.transform.forward * currentSpeed;
+          }
+          else
+          {
+               rb.AddForce(rb.transform.forward);
+               currentSpeed = rb.velocity.magnitude;
+               bounceTimer -= Time.deltaTime;
+               if (bounceTimer < 0)
+               {
+                    isBouncing = false;
+               }
+          }
           //calculate time to hit
           relativeSpeed = (targetEnt.rb.velocity - rb.velocity).magnitude;
           distance = (targetEnt.rb.position - rb.position).magnitude;
@@ -79,5 +95,19 @@ public class Enemy : Entity
                }
           }
      }
-     
+
+     public void OnCollisionEnter(Collision collision)
+     {
+
+
+          isBouncing = true;
+          bounceTimer = 1.0f;
+
+          if (collision.gameObject.CompareTag("Entity"))
+          {
+               Rigidbody otherRB = collision.gameObject.GetComponent<Rigidbody>();
+               rb.AddForce((collision.GetContact(0).normal * Vector3.Dot(otherRB.velocity, collision.GetContact(0).normal)) * 10, ForceMode.Impulse);
+          }
+     }
+
 }

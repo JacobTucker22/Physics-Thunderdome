@@ -8,12 +8,14 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
      public Rigidbody rb;
-     public float thrust = 5.0f;
-     //FIXME Max and Min speed don't do anything yet
-     public float maxSpeed = 20;
-     public float minSpeed = -5;
+     public float thrust = 200.0f;
+     public float maxSpeed = 500;
+     public float minSpeed = -250;
      //To be put in UI
      public float currentSpeed = 0;
+
+     public bool isBouncing = false;
+     public float bounceTimer = 1.0f;
 
      //Used for AI
      public Vector3 position, velocity;
