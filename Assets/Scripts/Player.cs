@@ -14,9 +14,9 @@ public class Player : Entity
           Cursor.visible = false;
 
           collisionSound = GetComponent<AudioSource>();
-
           currentHealth = maxHealth;
-          healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
+
      }
 
      private void Update()
@@ -127,10 +127,11 @@ public class Player : Entity
      }
 
 
-//health
-public int maxHealth = 100;
+    //health
+    public int maxHealth = 3;
     public int currentHealth;
-    public UIMgr healthBar;
+    public HealthBar healthBar;
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
