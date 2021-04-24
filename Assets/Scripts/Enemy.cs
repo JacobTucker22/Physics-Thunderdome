@@ -22,7 +22,9 @@ public class Enemy : Entity
           rb.AddForce(Vector3.forward);
           //initialise position var to object position
           position = rb.position;
-     }
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
 
      private void FixedUpdate()
      {
@@ -108,6 +110,26 @@ public class Enemy : Entity
                Rigidbody otherRB = collision.gameObject.GetComponent<Rigidbody>();
                rb.AddForce((collision.GetContact(0).normal * Vector3.Dot(otherRB.velocity, collision.GetContact(0).normal)) * 10, ForceMode.Impulse);
           }
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            TakeDamage(1);
+        }
      }
+
+    //health
+    public int maxHealth = 3;
+    public int currentHealth;
+    public HealthBar healthBar;
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
+    public void Heal(int heal)
+    {
+        currentHealth += heal;
+        healthBar.SetHealth(currentHealth);
+    }
 
 }

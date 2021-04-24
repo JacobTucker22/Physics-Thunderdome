@@ -124,6 +124,10 @@ public class Player : Entity
                Rigidbody otherRB = collision.gameObject.GetComponent<Rigidbody>();
                rb.AddForce((collision.GetContact(0).normal * Vector3.Dot(otherRB.velocity, collision.GetContact(0).normal)) * 10, ForceMode.Impulse);
           }
+          if(collision.gameObject.CompareTag("Obstacle"))
+        {
+            TakeDamage(1);
+        }
      }
 
 
@@ -135,6 +139,11 @@ public class Player : Entity
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
+    public void Heal(int heal)
+    {
+        currentHealth += heal;
         healthBar.SetHealth(currentHealth);
     }
 }
