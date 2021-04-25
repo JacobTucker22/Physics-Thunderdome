@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //AI is embedded in enemy class
 public class Enemy : Entity
@@ -134,6 +135,8 @@ public class Enemy : Entity
                EntityMgr.inst.entities.Remove(this);
                mainMenu.inst.numOfEnemies--;
                Destroy(gameObject);
+            if(mainMenu.inst.numOfEnemies==0)
+                SceneManager.LoadScene("Victory Credits");
         }
        
     }

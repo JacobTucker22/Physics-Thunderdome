@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/The Dome.unity
     guid: 5d518d18e25b0f44bab1853e80d24c55
+  - enabled: 1
+    path: Assets/Scenes/Defeat Credits.unity
+    guid: 6e0e3cb925e674944b63e8b129c4f03b
+  - enabled: 1
+    path: Assets/Scenes/Victory Credits.unity
+    guid: e71de62529a865147be23f42a2db57a2
   m_configObjects: {}
