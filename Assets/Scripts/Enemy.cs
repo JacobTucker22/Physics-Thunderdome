@@ -131,7 +131,9 @@ public class Enemy : Entity
         healthBar.SetHealth(currentHealth);
         if(currentHealth<=0)
         {
-            Destroy(gameObject);
+               EntityMgr.inst.entities.Remove(this);
+               mainMenu.inst.numOfEnemies--;
+               Destroy(gameObject);
         }
        
     }
