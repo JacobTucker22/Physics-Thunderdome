@@ -109,8 +109,8 @@ MonoBehaviour:
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 21974
-    ctime1: 43562
+    ctime0: 26214
+    ctime1: 45875
     ctime2: 65535
     ctime3: 0
     ctime4: 0
@@ -385,3 +385,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfac87732e774545ba0e01708845f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 0}

@@ -74,6 +74,8 @@ public class Enemy : Entity
 
           //dec timer for Ai reset
           timer -= Time.deltaTime;
+
+        
      }
 
      //IDEA maybe find random target to make it more unpredictrable
@@ -127,6 +129,11 @@ public class Enemy : Entity
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        if(currentHealth<=0)
+        {
+            Destroy(gameObject);
+        }
+       
     }
     public void Heal(int heal)
     {

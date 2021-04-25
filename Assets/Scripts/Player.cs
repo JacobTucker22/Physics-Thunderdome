@@ -29,7 +29,7 @@ public class Player : Entity
 
 
 
-     }
+    }
 
      //WS add/subtract from current speed
      //Space stops the player for testing purposes 
@@ -140,6 +140,13 @@ public class Player : Entity
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            Debug.Log("GAME OVER");
+            //QuitGame();
+
+        }
+            
     }
     public void Heal(int heal)
     {
