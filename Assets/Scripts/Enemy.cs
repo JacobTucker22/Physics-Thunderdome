@@ -83,20 +83,22 @@ public class Enemy : Entity
      {
           float min = Mathf.Infinity;
           float diff;
-          
-          foreach(Entity ent in EntityMgr.inst.entities)
+
+          for (int i = 0; i < mainMenu.inst.numOfEnemies; i++)
           {
-               if (ent != this)
+               if (EntityMgr.inst.entities[i] != this)
                {
-                    diff = (rb.position - ent.rb.position).magnitude;
-                    if(min > diff)
+                    diff = (rb.position - EntityMgr.inst.entities[i].rb.position).magnitude;
+                    if (min > diff)
                     {
                          min = diff;
-                         targetEnt = ent;
+                         targetEnt = EntityMgr.inst.entities[i];
                     }
                }
           }
      }
+
+
 
      public void OnCollisionEnter(Collision collision)
      {

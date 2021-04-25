@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class mainMenu : MonoBehaviour
 {
+     public static mainMenu inst;
      //name of scene to be loaded
      public string chosenScene = null;
 
@@ -19,6 +20,12 @@ public class mainMenu : MonoBehaviour
      public Text selectedLevelText;
      //buttons
      public Button tunnelButton, domeButton, startButton;
+
+     private void Awake()
+     {
+          inst = this;
+          DontDestroyOnLoad(transform.gameObject);
+     }
 
      //slider function updates number of enemies and text when slider moves
      public void updateNumberOfEnemies()

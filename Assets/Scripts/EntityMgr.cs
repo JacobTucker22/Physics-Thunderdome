@@ -14,12 +14,19 @@ public class EntityMgr : MonoBehaviour
      private void Awake()
      {
           inst = this;
+          for (int i = 0; i < entities.Count - 1; i++)
+          {
+               entities[i + 1].transform.gameObject.SetActive(false);
+          }
      }
 
      // Start is called before the first frame update
      void Start()
      {
-          
+          for(int i = 0; i < mainMenu.inst.numOfEnemies; i++)
+          {
+               entities[i + 1].transform.gameObject.SetActive(true);
+          }
      }
 
      // Update is called once per frame
