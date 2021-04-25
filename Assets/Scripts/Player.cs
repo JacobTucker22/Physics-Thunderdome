@@ -143,9 +143,10 @@ public class Player : Entity
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {
-            Debug.Log("GAME OVER");
-            SceneManager.LoadScene("Defeat Credits");
-            //QuitGame();
+               Debug.Log("GAME OVER");
+               Cursor.visible = true;
+               SceneManager.LoadScene("Defeat Credits");
+               //QuitGame();
         }
             
     }

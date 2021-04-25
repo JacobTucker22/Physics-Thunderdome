@@ -135,8 +135,11 @@ public class Enemy : Entity
                EntityMgr.inst.entities.Remove(this);
                mainMenu.inst.numOfEnemies--;
                Destroy(gameObject);
-            if(mainMenu.inst.numOfEnemies==0)
-                SceneManager.LoadScene("Victory Credits");
+               if (mainMenu.inst.numOfEnemies == 0)
+               {
+                    Cursor.visible = true;
+                    SceneManager.LoadScene("Victory Credits");
+               }
         }
        
     }
