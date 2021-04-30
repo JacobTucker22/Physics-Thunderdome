@@ -23,8 +23,8 @@ public class Enemy : Entity
           rb.AddForce(Vector3.forward);
           //initialise position var to object position
           position = rb.position;
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+          currentHealth = maxHealth;
+          healthBar.SetMaxHealth(maxHealth);
     }
 
      private void FixedUpdate()
