@@ -19,7 +19,7 @@ public class Player : Entity
         healthBar.SetMaxHealth(maxHealth);
 
      }
-
+    float waitTime = 2.0f;
      private void Update()
      {
           //Moves the player orientation with mouse movement
@@ -27,9 +27,14 @@ public class Player : Entity
           moveCamera();
           //Basic keyboard controls
           HandleInput();
-
-
-
+        //ram
+        if (!ram)
+        {
+            new WaitForSeconds(ramTimer);
+            maxSpeed = 500;
+            currentSpeed = maxSpeed;
+            ram = true;
+        }
     }
 
      //WS add/subtract from current speed
@@ -59,16 +64,24 @@ public class Player : Entity
           {
                rb.MovePosition(rb.position - rb.transform.right * 3);
           }
-          if(Input.GetKey(KeyCode.Space))  
+          if(Input.GetKeyDown(KeyCode.Space))  
           {
-               rb.velocity = Vector3.zero;
+            if(ram)
+            {
+                maxSpeed = 1000;
+                currentSpeed = maxSpeed;
+                ram = false;
+            }
           }
           if (Input.GetKeyDown(KeyCode.Escape))
           {
                QuitGame();
           }
-     }
+          
 
+     }
+    int ramTimer = 2;
+    bool ram = true;
      //transforms rigidbody component based on mouse movement
      public void moveCamera()
      {
