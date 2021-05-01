@@ -30,7 +30,6 @@ public class Enemy : Entity
 
      private void FixedUpdate()
      {
-          //FIXME stagger AI reset. looks weird when they all stop and choose new targets at once
           //20 second timer resets AI.
           //Avoids constant orbits or other infinite loops encountered in Ai
           //Also refinds nearest target to keep it fresh
