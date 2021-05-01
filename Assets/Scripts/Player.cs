@@ -11,6 +11,13 @@ public class Player : Entity
      public float waitTime = 0.0f;
      public bool ram = false;
 
+     public static Player inst;
+
+     private void Awake()
+     {
+          inst = this;
+     }
+
      private void Start()
      {
           rb = GetComponent<Rigidbody>();
