@@ -11,6 +11,7 @@ public class Enemy : Entity
      public float relativeSpeed;
      public float distance;
      public float timeToHit;
+     public bool ramReady = true;
 
      public Vector3 predictedPos;
      Vector3 eulerAngles;
@@ -33,15 +34,15 @@ public class Enemy : Entity
           //20 second timer resets AI.
           //Avoids constant orbits or other infinite loops encountered in Ai
           //Also refinds nearest target to keep it fresh
-          if (timer <= 0)
+          if (timer <= 0 || targetEnt == null)
           {
                FindTarget();
                timer = 20.0f;
+               ramReady = true;
                //rb.velocity = Vector3.zero;
           }
 
           //AI always trying to move forward for now
-          //FIXME maybe add decrease to velocity when trying to turn towards target?
           if (currentSpeed <= maxSpeed)
           {
                currentSpeed = currentSpeed + thrust * Time.deltaTime;
@@ -65,6 +66,12 @@ public class Enemy : Entity
           relativeSpeed = (targetEnt.rb.velocity - rb.velocity).magnitude;
           distance = (targetEnt.rb.position - rb.position).magnitude;
           timeToHit = distance / relativeSpeed;
+
+          if(timeToHit < 1.0 && ramReady)
+          {
+               currentSpeed = 1000;
+               ramReady = false;
+          }
           
           //calculate predicted position from time to hit
           predictedPos = targetEnt.rb.position + (targetEnt.rb.velocity * timeToHit);
@@ -84,21 +91,14 @@ public class Enemy : Entity
      //sets this enemy's target ent
      public void FindTarget()
      {
-          float min = Mathf.Infinity;
-          float diff;
+          //float min = Mathf.Infinity;
+          //float diff;
 
-          for (int i = 0; i < mainMenu.inst.numOfEnemies; i++)
+          while (targetEnt == null || targetEnt == this)
           {
-               if (EntityMgr.inst.entities[i] != this)
-               {
-                    diff = (rb.position - EntityMgr.inst.entities[i].rb.position).magnitude;
-                    if (min > diff)
-                    {
-                         min = diff;
-                         targetEnt = EntityMgr.inst.entities[i];
-                    }
-               }
+               targetEnt = EntityMgr.inst.entities[Random.Range(0, mainMenu.inst.numOfEnemies)];
           }
+
      }
 
 
@@ -114,6 +114,10 @@ public class Enemy : Entity
           {
                Rigidbody otherRB = collision.gameObject.GetComponent<Rigidbody>();
                rb.AddForce((collision.GetContact(0).normal * Vector3.Dot(otherRB.velocity, collision.GetContact(0).normal)) * 10, ForceMode.Impulse);
+               if(currentSpeed >= otherRB.GetComponent<Entity>().currentSpeed * 1.5)
+               {
+                    otherRB.GetComponent<Entity>().TakeDamage(1);
+               }
           }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
@@ -126,7 +130,7 @@ public class Enemy : Entity
     public int currentHealth;
     public HealthBar healthBar;
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

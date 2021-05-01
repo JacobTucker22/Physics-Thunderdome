@@ -37,13 +37,13 @@ public class mainMenu : MonoBehaviour
      //tunnel and dome button functions
      public void selectTunnel()
      {
-          chosenScene = tunnelButton.GetComponentInParent<Text>().text;
+          chosenScene = tunnelButton.GetComponentInChildren<Text>().text;
           selectedLevelText.text = chosenScene;
      }
 
      public void selectDome()
      {
-          chosenScene = domeButton.GetComponentInParent<Text>().text;
+          chosenScene = domeButton.GetComponentInChildren<Text>().text;
           selectedLevelText.text = chosenScene;
      }
 

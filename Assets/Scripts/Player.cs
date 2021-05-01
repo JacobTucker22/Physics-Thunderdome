@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
-     //euler angles used to transforom orientation with mouse
+     //euler angles used to transform orientation with mouse
      public Vector3 eulerAngles = Vector3.zero;
+     public float ramTimer = 2.0f;
+     public float waitTime = 0.0f;
+     public bool ram = false;
 
      private void Start()
      {
@@ -19,7 +22,7 @@ public class Player : Entity
         healthBar.SetMaxHealth(maxHealth);
 
      }
-    float waitTime = 2.0f;
+
      private void Update()
      {
           //Moves the player orientation with mouse movement
@@ -28,18 +31,35 @@ public class Player : Entity
           //Basic keyboard controls
           HandleInput();
         //ram
-        if (!ram)
+        if (ram)
         {
-            new WaitForSeconds(ramTimer);
-            maxSpeed = 500;
-            currentSpeed = maxSpeed;
-            ram = true;
+               if (ramTimer > 0)
+               {
+                    ramTimer -= Time.deltaTime;
+                    maxSpeed = 1000;
+                    currentSpeed = maxSpeed;
+               }
+               else
+               {
+                    ram = false;
+                    maxSpeed = 500;
+                    
+               }
+
         }
+        else
+          {
+               
+               if (waitTime > 0)
+               {
+                    waitTime -= Time.deltaTime;
+               }
+
+          }
     }
 
      //WS add/subtract from current speed
      //Space stops the player for testing purposes 
-     //FIXME change stop to something else. Space and Click to be used for ram
      public void HandleInput()
      {
           if(Input.GetKey(KeyCode.W)) 
@@ -66,11 +86,12 @@ public class Player : Entity
           }
           if(Input.GetKeyDown(KeyCode.Space))  
           {
-            if(ram)
+            if(waitTime <= 0)
             {
-                maxSpeed = 1000;
-                currentSpeed = maxSpeed;
-                ram = false;
+                    ram = true;
+                    
+                    ramTimer = 2.0f;
+                    waitTime = 8.0f;
             }
           }
           if (Input.GetKeyDown(KeyCode.Escape))
@@ -80,8 +101,7 @@ public class Player : Entity
           
 
      }
-    int ramTimer = 2;
-    bool ram = true;
+
      //transforms rigidbody component based on mouse movement
      public void moveCamera()
      {
@@ -137,6 +157,10 @@ public class Player : Entity
           {
                Rigidbody otherRB = collision.gameObject.GetComponent<Rigidbody>();
                rb.AddForce((collision.GetContact(0).normal * Vector3.Dot(otherRB.velocity, collision.GetContact(0).normal)) * 10, ForceMode.Impulse);
+               if(currentSpeed >= otherRB.GetComponent<Enemy>().currentSpeed * 1.5)
+               {
+                    otherRB.GetComponent<Enemy>().TakeDamage(1);
+               }
           }
           if(collision.gameObject.CompareTag("Obstacle"))
         {
@@ -150,7 +174,7 @@ public class Player : Entity
     public int currentHealth;
     public HealthBar healthBar;
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

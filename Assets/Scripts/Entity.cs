@@ -21,4 +21,6 @@ public class Entity : MonoBehaviour
      public Vector3 position, velocity;
      public Vector3 direction = Vector3.zero;
 
+     public virtual void TakeDamage(int damage) { }
+
 }

@@ -9,7 +9,6 @@ public class Obstacle : MonoBehaviour
     public float thrust = 0f;
     public float maxSpeed = 20;
     public float minSpeed = -20;
-    //To be put in UI
     public float currentSpeed = 0;
 
     private float movementDuration = 2.0f;
