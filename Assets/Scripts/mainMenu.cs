@@ -27,6 +27,11 @@ public class mainMenu : MonoBehaviour
           DontDestroyOnLoad(transform.gameObject);
      }
 
+     private void Start()
+     {
+          Cursor.lockState = CursorLockMode.None;
+     }
+
      //slider function updates number of enemies and text when slider moves
      public void updateNumberOfEnemies()
      {
@@ -51,12 +56,13 @@ public class mainMenu : MonoBehaviour
      //FIXME add function to load desired number of entites
      public void StartGame()
      {
-          if(chosenScene == null)
+          if (chosenScene == "")
           {
                Debug.Log("No Level Selected");
           }
           else
           {
+               Cursor.lockState = CursorLockMode.Locked;
                SceneManager.LoadScene(chosenScene);
           }
 
