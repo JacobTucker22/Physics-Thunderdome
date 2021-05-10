@@ -1,9 +1,10 @@
 Here is the link to the google slides presentation
 
-https://docs.google.com/presentation/d/1L2PPXSimxXNxIEoZusVf_0LLfu2oG4QF_JU_ip0LnK0/edit?usp=sharing
+https://docs.google.com/presentation/d/17bZu73nShpPogE8Ryhd_SyyoIaItPIMS_hoDCDjPyz4/edit?usp=sharing
 
 
 Link to WebGL Build
+There is also a exe build in the builds folder inside the project
 
-https://jacobtucker22.github.io/Physics-Thunderdome/Builds/Beta/index.html
+https://jacobtucker22.github.io/Physics-Thunderdome/Builds/WebGL/index.html
 
